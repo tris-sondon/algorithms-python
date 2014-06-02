@@ -31,10 +31,12 @@ def merge(a1, a2):
             for e in a1[i:]:
                 r[k] = e
                 i += 1
+                k += 1
         else:
             for e in a2[j:]:
                 r[k] = e
                 j += 1
+                k += 1
         k += 1
     return r
 
