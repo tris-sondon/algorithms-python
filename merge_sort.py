@@ -12,28 +12,30 @@ __email__ = "tristana.sondon@gmail.com"
 
 
 def merge(a1, a2):
-    r = []
     i = 0
     j = 0
+    k = 0
     n1 = len(a1)
     n2 = len(a2)
+    r = [0] * (n1 + n2)
 
     while i < n1 or j < n2:
         if i < n1 and j < n2:
             if a1[i] < a2[j]:
-                r.append(a1[i])
+                r[k] = a1[i]
                 i += 1
             else:
-                r.append(a2[j])
+                r[k] = a2[j]
                 j += 1
         elif i < n1:
             for e in a1[i:]:
-                r.append(e)
+                r[k] = e
                 i += 1
         else:
             for e in a2[j:]:
-                r.append(e)
+                r[k] = e
                 j += 1
+        k += 1
     return r
 
 
@@ -76,4 +78,8 @@ if __name__ == "__main__":
     a = []
     print a, " --> ", merge_sort(a)
 
+    a = ["lala", "pepe", "ama", "zoto", "mama"]
+    print a, " --> ", merge_sort(a)
 
+    a = ["lala", "Pepe", "ama", "Zoto", "mama", "amas"]
+    print a, " --> ", merge_sort(a)
