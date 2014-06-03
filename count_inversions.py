@@ -1,7 +1,10 @@
 #!/usr/bin/env python
 
 """
-Counts inversions of an array of integer numbers.
+Sorts and counts number of inversions in an array of integer numbers.
+
+Complexity: O(nlog(n))
+
 """
 
 __author__ = "Tristana Sondon"
