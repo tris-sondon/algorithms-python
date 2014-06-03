@@ -43,35 +43,36 @@ def merge(a1, a2):
     return r, inversion_counter
 
 
-def _merge_sort_and_count_inv(a, ictot):
+def _sort_and_count_inv(a, ictot):
     n = len(a)
     if n > 0:
         if n == 1:
             ictot = 0
             return a, ictot 
         else:
-            al, icl = _merge_sort_and_count_inv(a[:n/2], ictot)
-            ar, icr = _merge_sort_and_count_inv(a[n/2:], ictot)
+            al, icl = _sort_and_count_inv(a[:n/2], ictot)
+            ar, icr = _sort_and_count_inv(a[n/2:], ictot)
         sorted_array, invc = merge(al, ar)
         ictot = ictot + invc + icl + icr
         return sorted_array, ictot
     return [], 0
 
 def count_inversions(input_array):
-    return _merge_sort_and_count_inv(input_array, 0)
+    return _sort_and_count_inv(input_array, 0)
     
+def main(filename):
+    with open(filename, 'r') as inputfile:
+        number_list = inputfile.readlines()
+    number_list = [int(i) for i in number_list]
+    sorted_array, inversion_count =  count_inversions(number_list)
+    print sorted_array
+    print "Number of Inversions: ", inversion_count
+
 
 if __name__ == "__main__":
-
     try:
         filename = sys.argv[1]
-        with open(filename, 'r') as inputfile:
-            number_list = inputfile.read().splitlines()
-        number_list = [int(n) for n in number_list]
-        sorted_array, inversion_count =  count_inversions(number_list)
-        # print sorted_array
-        print "Number of Inversions: ", inversion_count
-
+        main(filename)
     except:
         print "Use: count_inversions <input_file>"
 
